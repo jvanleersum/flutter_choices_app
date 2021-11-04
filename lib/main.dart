@@ -25,7 +25,7 @@ class _StoryPageState extends State<StoryPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/background.png'),
+            image: AssetImage('images/background_extragreen.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -36,30 +36,27 @@ class _StoryPageState extends State<StoryPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
-                flex: 12,
-                child: Center(
-                  child: Text(
-                    storyBrain.getStory(),
-                    style: TextStyle(
-                      fontSize: 25.0,
-                    ),
-                  ),
+                child: Text(
+                  "Choices",
+                  style: TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Lobster'),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Expanded(
-                flex: 2,
-                child: FlatButton(
-                  onPressed: () {
-                    //Choice 1 made by user.
-                    setState(() {
-                      storyBrain.nextStory(1);
-                    });
-                  },
-                  color: Colors.red,
-                  child: Text(
-                    storyBrain.getChoice1(),
-                    style: TextStyle(
-                      fontSize: 20.0,
+                flex: 5,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Center(
+                    child: Text(
+                      storyBrain.getStory(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -68,20 +65,45 @@ class _StoryPageState extends State<StoryPage> {
                 height: 20.0,
               ),
               Expanded(
-                flex: 2,
+                flex: 1,
+                child: TextButton(
+                  onPressed: () {
+                    //Choice 1 made by user.
+                    setState(() {
+                      storyBrain.nextStory(1);
+                    });
+                  },
+                  style: TextButton.styleFrom(
+                      backgroundColor: Colors.black54, primary: Colors.white),
+                  child: Text(
+                    storyBrain.getChoice1(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Expanded(
+                flex: 1,
                 child: Visibility(
                   visible: storyBrain.buttonShouldBeVisible(),
-                  child: FlatButton(
+                  child: TextButton(
                     onPressed: () {
                       setState(() {
                         storyBrain.nextStory(2);
                       }); //Choice 2 made by user.
                     },
-                    color: Colors.blue,
+                    style: TextButton.styleFrom(
+                        backgroundColor: Colors.black54, primary: Colors.white),
                     child: Text(
                       storyBrain.getChoice2(),
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: 16.0,
                       ),
                     ),
                   ),
